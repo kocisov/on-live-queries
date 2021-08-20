@@ -1,0 +1,30 @@
+"""
+Instruction for establishing a live connection that is updated once the underlying data changes.
+"""
+directive @live(
+  """Whether the query should be live or not."""
+  if: Boolean = true
+) on QUERY
+
+scalar DateTime
+
+type Item {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  user: User!
+}
+
+type Query {
+  users: [User!]!
+}
+
+type User {
+  createdAt: DateTime!
+  id: ID!
+  items: [Item!]!
+  name: String!
+  updatedAt: DateTime!
+}
